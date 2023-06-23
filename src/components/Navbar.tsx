@@ -1,7 +1,11 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
-export default function Navbar(props) {
+interface NavbarProps{
+  title:string
+  aboutText:string
+}
+
+const Navbar: React.FC<NavbarProps>=(props) =>{
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
     <a className="navbar-brand" href="#">{props.title}</a>
@@ -24,9 +28,4 @@ export default function Navbar(props) {
   </nav>
   )
 }
-Navbar.propTypes={title :PropTypes.string,
-                  aboutText: PropTypes.string}
-Navbar.defaultProps = {
-    title: 'See title here',
-    aboutText: 'About text here'
-}
+export default Navbar;

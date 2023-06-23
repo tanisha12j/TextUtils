@@ -1,12 +1,16 @@
 import React, {useState} from 'react'
 
+interface TextFormsProps{
+  heading?:string
+}
 
+const TextForm : React.FC<TextFormsProps>=(props) => {
 
-export default function TextForm(props) {
-    const handleupClick=() =>{
+  const [text, setText] = useState('');
+
+    const handleupClick=() => {
         console.log("UpperCase was clicked"+ text);
         let newText=text.toUpperCase();
-
         setText(newText);
     }
     const handleloClick=() =>{
@@ -20,7 +24,7 @@ export default function TextForm(props) {
     msg.text = text;
     window.speechSynthesis.speak(msg);
   }
-    const handleonChange=(event) =>{
+    const handleonChange=(event :React.ChangeEvent<HTMLTextAreaElement>) =>{
         console.log("Handle onchange");
         setText(event.target.value);
     }
@@ -31,24 +35,18 @@ export default function TextForm(props) {
     
 const reverseText = () => { //hello
   let splitText = text.split(""); //['h', 'e', 'l', 'l', 'o']
-  let reverseingText = splitText.reverse(""); //['o', 'l', 'l', 'e', 'h']
+  let reverseingText = splitText.reverse(); //['o', 'l', 'l', 'e', 'h']
   let joinText = reverseingText.join(""); //olleh
-  setText(joinText)
+  setText(joinText);
 }
-// const color = ['red', 'blue', 'yellow', 'orange', 'green', 'black', 'pink', 'salmon', 'teal'];
-// const changeColor = (number) =>{
-//   document.getElementById('textArea').style.color = color[number];
-// }
 
-
- const [text, setText] = useState('');
   return (
     <>
     <div>
         <h1>{props.heading}</h1>    
 <div className="mb-3">
 
-  <textarea className="form-control" value={text} onChange={handleonChange} id="exampleFormControlTextarea1" rows="8"></textarea>
+  <textarea className="form-control" value={text} onChange={handleonChange} id="exampleFormControlTextarea1" rows={8}></textarea>
 </div>
 <button className="btn btn-primary mx-2" onClick={handleupClick}>Convert to upper case</button>
 <button className="btn btn-primary mx-2" onClick={handleloClick}>Convert to lower case</button>
@@ -68,3 +66,4 @@ const reverseText = () => { //hello
     </>
   )
 }
+export default TextForm;
